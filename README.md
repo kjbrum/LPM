@@ -14,4 +14,4 @@ A simple app built with Node.js for managing local development projects.
 
 ## License:
 
-Copyright © [Kyle Brumm](http://kylebrumm.com). TaB is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
+Copyright © [Kyle Brumm](http://kylebrumm.com). LPM is free to use on whatever and may be redistributed under the terms specified in the [license](LICENSE.md).
