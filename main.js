@@ -19,15 +19,108 @@ app.on('window-all-closed', function() {
 // Initialization completed
 app.on('ready', function() {
 
-    var appIcon = new Tray(__dirname + '/icon.png');
-    var contextMenu = Menu.buildFromTemplate([
-        { label: 'Item1', type: 'radio' },
-        { label: 'Item2', type: 'radio' },
-        { label: 'Item3', type: 'radio', checked: true },
-        { label: 'Item4', type: 'radio' },
-    ]);
-    appIcon.setToolTip('This is my application.');
-    appIcon.setContextMenu(contextMenu);
+    // Setup the dropdown in the menubar
+    var trayIcon = new Tray(__dirname + '/icon.png');
+    var template = [
+      {
+        label: 'Electron',
+        submenu: [
+          {
+            label: 'About Electron',
+            selector: 'orderFrontStandardAboutPanel:'
+          },
+          {
+            type: 'separator'
+          },
+          {
+            label: 'Services',
+            submenu: []
+          },
+          {
+            type: 'separator'
+          },
+          {
+            label: 'Hide Electron',
+            accelerator: 'Command+H',
+            selector: 'hide:'
+          },
+          {
+            label: 'Hide Others',
+            accelerator: 'Command+Shift+H',
+            selector: 'hideOtherApplications:'
+          },
+          {
+            label: 'Show All',
+            selector: 'unhideAllApplications:'
+          },
+          {
+            type: 'separator'
+          },
+          {
+            label: 'Quit',
+            accelerator: 'Command+Q',
+            click: function() {
+                app.quit();
+            }
+          },
+        ]
+      },
+      {
+        label: 'View',
+        submenu: [
+          {
+            label: 'Reload',
+            accelerator: 'Command+R',
+            click: function() {
+                BrowserWindow.getFocusedWindow().reloadIgnoringCache();
+            }
+          },
+          {
+            label: 'Toggle DevTools',
+            accelerator: 'Alt+Command+I',
+            click: function() {
+                BrowserWindow.getFocusedWindow().toggleDevTools();
+            }
+          },
+        ]
+      },
+      {
+        label: 'Window',
+        submenu: [
+          {
+            label: 'Minimize',
+            accelerator: 'Command+M',
+            selector: 'performMiniaturize:'
+          },
+          {
+            label: 'Close',
+            accelerator: 'Command+W',
+            selector: 'performClose:'
+          },
+          {
+            type: 'separator'
+          },
+          {
+            label: 'Bring All to Front',
+            selector: 'arrangeInFront:'
+          },
+        ]
+      },
+      {
+        label: 'Help',
+        submenu: []
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Quit LPM'
+      },
+    ];
+    var menu = Menu.buildFromTemplate(template);
+    trayIcon.setContextMenu(menu);
+    app.dock.bounce();
+    // app.dock.setMenu(menu);
 
     // Create the browser window
     win = new BrowserWindow({
