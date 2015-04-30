@@ -1,0 +1,17 @@
+{
+  "name": "LPM",
+  "version": "0.0.1",
+  "description": "A simple app built with Node.js for managing local development projects.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kyle Brumm",
+  "license": "MIT",
+  "devDependencies": {
+    "electron-prebuilt": "^0.25.1"
+  },
+  "dependencies": {
+    "lodash": "^3.7.0"
+  }
+}
